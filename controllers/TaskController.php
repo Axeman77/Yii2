@@ -24,4 +24,9 @@ class TaskController extends Controller
         exit;
     }
 
+    public function actionUser ()
+    {
+           exit;
+    }
+
 }
