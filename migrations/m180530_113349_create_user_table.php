@@ -20,7 +20,10 @@ class m180530_113349_create_user_table extends Migration
             'last_name'=>$this->string(50),
             'email'=>$this->string(50)
         ]);
+
     }
+
+
 
     /**
      * {@inheritdoc}
