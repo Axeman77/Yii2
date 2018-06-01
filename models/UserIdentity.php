@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-class UserIdentity extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+class UserIdentity extends \app\models\tables\User implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
