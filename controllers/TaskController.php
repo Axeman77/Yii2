@@ -17,10 +17,16 @@ class TaskController extends Controller
 {
         public function actionIndex ()
     {
-        $model = new Test ();
+        $userId = \Yii::$app->user->getId();
+        $calendar = array_fill_keys(range(1, date("t")), []);
 
-        return $this->render('index',['title' => 'Test','content' => 'This is index']);
-            }
+        foreach (Task::getByCurrentMonth($userId) as $task) {
+            $date = \DateTime::createFromFormat("Y-m-d H:i:s", $task->date);
+            $calendar[$date->format("j")][] = $task;
+        }
+
+        return $this->render('index',['calendar' => $calendar]);
+    }
 
    public function actionCreate()
    {
@@ -28,6 +34,7 @@ class TaskController extends Controller
        if ($model->load(\Yii::$app->request->post()) && $model->save()){
            $this->redirect(['task/index']);
        }
+
        return $this->render('create',['model'=>$model]);
    }
 
