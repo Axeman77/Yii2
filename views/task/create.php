@@ -16,3 +16,4 @@ echo $form->field($model,'description')->textarea();
 echo $form->field($model,'user_id')->textInput();
 echo Html::submitButton("Создать", ['class'=>'btn btn-success']);
 ActiveForm::end();
+

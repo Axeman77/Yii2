@@ -3,6 +3,10 @@
 namespace app\models\tables;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Exception;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "task".
@@ -52,7 +56,8 @@ class Task extends \yii\db\ActiveRecord
             'date' => 'Дата окончания',
             'description' => 'Описание',
             'user_id' => 'Пользователь',
-        ];
+            'create_at' => 'Дата создания',
+            'update_at' => 'Дата обновления'];
     }
 
     /**
@@ -66,8 +71,22 @@ class Task extends \yii\db\ActiveRecord
     public static function getByCurrentMonth($userId)
     {
         return static::find()
-            -> where(['user_id' =>$userId])
-            -> andWhere(['MONTH(date)' => date('n')])
-            -> all();
+            ->where(['user_id' => $userId])
+            ->andWhere(['MONTH(date)' => date('n')])
+            ->all();
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['create_at', 'update_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['update_at'],
+                ],
+                'value' => new Expression('NOW()'),
+            ],
+        ];
     }
 }

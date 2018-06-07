@@ -12,6 +12,7 @@ use app\models\tables\Task;
 use app\models\tables\User;
 use app\models\Test;
 use yii\web\Controller;
+use Yii;
 
 class TaskController extends Controller
 {
@@ -37,5 +38,11 @@ class TaskController extends Controller
 
        return $this->render('create',['model'=>$model]);
    }
+
+    public function actionView()
+    {
+        $task = Task::findOne(Yii::$app->request->queryParams['id']);
+        return $this->render('view', ['task' => $task]);
+    }
 
 }
