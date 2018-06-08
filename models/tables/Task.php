@@ -81,10 +81,8 @@ class Task extends \yii\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['create_at', 'update_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['update_at'],
-                ],
+                'createdAtAttribute' => 'create_at',
+                'updatedAtAttribute' => 'update_at',
                 'value' => new Expression('NOW()'),
             ],
         ];
