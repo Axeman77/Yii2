@@ -51,14 +51,15 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => ['calendar' => 'task/index',
+                        'task/<id>' => 'task/view',
+                        ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
