@@ -11,6 +11,7 @@ namespace app\controllers;
 use app\models\tables\Task;
 use app\models\tables\User;
 use app\models\Test;
+use yii\imagine\Image;
 use yii\web\Controller;
 use Yii;
 
@@ -43,6 +44,12 @@ class TaskController extends Controller
     {
         $task = Task::findOne(Yii::$app->request->queryParams['id']);
         return $this->render('view', ['task' => $task]);
+    }
+
+    public function actionImg ()
+    {
+        Image::thumbnail('@webroot/img/model_1.jpg', 100, 100)
+            -> save(\Yii::getAlias('@webroot/img/small/model_1.jpg'));
     }
 
 }
