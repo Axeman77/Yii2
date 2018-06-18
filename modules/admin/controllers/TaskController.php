@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\admin\controllers;
 
 use Yii;
 use app\models\tables\Task;
@@ -10,9 +10,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AdminTaskController implements the CRUD actions for Task model.
+ * TaskController implements the CRUD actions for Task model.
  */
-class AdminTaskController extends Controller
+class TaskController extends Controller
 {
     /**
      * {@inheritdoc}
