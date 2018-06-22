@@ -29,7 +29,7 @@ use yii\helpers\Url;
             <td>
                 <? if (count($events) > 0) {
                     foreach ($events as $event){
-                        echo '<a href="?r=task/view&id=' . $event->id . '"><p>' . $event->name . '</p><p class="small">'. $event->description .'</p></a>';}
+                        echo '<a href="task/' . $event->id . '"><p>' . $event->name . '</p><p class="small">'. $event->description .'</p></a>';}
                 } else echo '-'; ?>
 
             </td>

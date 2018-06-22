@@ -11,14 +11,25 @@ namespace app\controllers;
 use app\models\tables\Task;
 use app\models\tables\User;
 use app\models\Test;
+use yii\filters\AccessControl;
 use yii\imagine\Image;
 use yii\web\Controller;
 use Yii;
+use yii\web\ForbiddenHttpException;
 
 class TaskController extends Controller
 {
-        public function actionIndex ()
+
+
+    public function actionIndex ()
     {
+        /*if(Yii::$app->user->can('deleteTask')) {
+            echo "УРРа МОГУ";
+            exit;
+        } else {
+            throw new ForbiddenHttpException();
+        }*/
+
         $userId = \Yii::$app->user->getId();
         $calendar = array_fill_keys(range(1, date("t")), []);
 

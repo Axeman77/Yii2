@@ -7,6 +7,22 @@ use yii\console\Controller;
 class TaskController extends Controller
 {
 
+
+    public function behaviors()
+    {
+        return
+            [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index'],
+                    'rules' => [
+                        'allow' => true,
+                        'roles' => ['@']
+                    ],
+                ],
+            ];
+    }
+
     public function actionTime()
     {
         if (!$models = Task::find()->
